@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/city_text"
+        android:layout_centerHorizontal="true"
+        style="@style/TextView"/>
+
+    <TextView
+        android:id="@+id/weather_condition"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/city_text"
+        android:textStyle="bold"
+        android:textColor="@color/colorAccent"
+        style="@style/TextView"/>
+
+    <TextView
+        android:id="@+id/temp_text"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/weather_condition"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        style="@style/TextView"/>
+
+    <TextView
+        android:id="@+id/humidity_text"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/temp_text"
+        android:textColor="@color/colorAccent"
+        style="@style/TextView"/>
+
+    <TextView
+        android:id="@+id/wind_text"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/humidity_text"
+        android:textColor="@color/colorAccent"
+        style="@style/TextView"/>
+
+</LinearLayout>
