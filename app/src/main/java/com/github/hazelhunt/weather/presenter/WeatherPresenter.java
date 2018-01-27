@@ -10,14 +10,14 @@ import rx.android.schedulers.AndroidSchedulers;
 
 public class WeatherPresenter extends MvpBasePresenter<WeatherView> {
 
-    public void doObtainWeather(double lat, double lon) {
+    public void doObtainWeatherByName(String cityName) {
         if (getView() == null) {
             return;
         }
 
         getView().showLoading();
 
-        WeatherAdapter.getInstance().getCurrentWeather(lat, lon)
+        WeatherAdapter.getInstance().getCurrentWeatherByName(cityName)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<WeatherInfo>() {
                     @Override
@@ -35,4 +35,32 @@ public class WeatherPresenter extends MvpBasePresenter<WeatherView> {
                     }
                 });
     }
+
+
+    public void doObtainWeatherByLocation(Double lat,Double lon) {
+        if (getView() == null) {
+            return;
+        }
+
+        getView().showLoading();
+
+        WeatherAdapter.getInstance().getCurrentWeatherByLocation(lat,lon)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<WeatherInfo>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getView().showError(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(WeatherInfo weather) {
+                        getView().onWeatherObtained(weather);
+                    }
+                });
+    }
+
 }

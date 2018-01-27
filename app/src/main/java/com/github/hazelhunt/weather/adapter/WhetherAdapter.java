@@ -9,8 +9,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.github.hazelhunt.weather.R;
+import com.github.hazelhunt.weather.model.Weather;
 import com.github.hazelhunt.weather.model.WeatherInfo;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import butterknife.Bind;
@@ -18,11 +21,11 @@ import butterknife.ButterKnife;
 
 public class WhetherAdapter extends RecyclerView.Adapter<WhetherAdapter.WhetherViewHolder> {
 
-    List<WeatherInfo> mlist;
+    List<Weather> mlist;
     Context mContext;
 
 
-    public WhetherAdapter(List<WeatherInfo> mlist,Context context) {
+    public WhetherAdapter(List<Weather> mlist,Context context) {
         this.mlist = mlist;
         this.mContext=context;
     }
@@ -68,13 +71,13 @@ public class WhetherAdapter extends RecyclerView.Adapter<WhetherAdapter.WhetherV
             ButterKnife.bind(this, itemView);
         }
 
-        public void bindWhether(WeatherInfo w) {
-            String city = w.getName();
-            String condition = w.getWeather().get(0).getDescription();
-            String temp = w.getMain().getTemp() +
+        public void bindWhether(Weather w) {
+            String city = getDate(w.getDate_mili_sec(),"dd/MM/yyyy hh:mm:ss.SSS");
+            String condition = w.getWeather_overview().get(0).getDescription();
+            String temp = w.getMainWeather().getTemp() +
                     mContext.getString(R.string.celsius);
             String humidity = mContext.getString(R.string.humidity) + ": " +
-                    w.getMain().getHumidity() + "%";
+                    w.getMainWeather().getHumidity() + "%";
             String wind = mContext.getString(R.string.wind_speed) + ": " +
                     w.getWind().getSpeed() + " m/s";
 
@@ -83,6 +86,17 @@ public class WhetherAdapter extends RecyclerView.Adapter<WhetherAdapter.WhetherV
             tempText.setText(temp);
             humidityText.setText(humidity);
             windText.setText(wind);
+        }
+
+        public  String getDate(long milliSeconds, String dateFormat)
+        {
+            // Create a DateFormatter object for displaying date in specified format.
+            SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
+
+            // Create a calendar object that will convert the date and time value in milliseconds to date.
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(milliSeconds);
+            return formatter.format(calendar.getTime());
         }
     }
 }

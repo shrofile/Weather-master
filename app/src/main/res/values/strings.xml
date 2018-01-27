@@ -6,4 +6,5 @@
     <string name="please_wait">Please wait…</string>
     <string name="refresh">Refresh</string>
     <string name="celsius">°C</string>
+    <string name="hint_search_city">Enter City Name</string>
 </resources>

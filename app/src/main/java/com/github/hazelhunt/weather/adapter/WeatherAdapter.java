@@ -31,8 +31,12 @@ public class WeatherAdapter {
         return instance;
     }
 
-    public Observable<WeatherInfo> getCurrentWeather(double lat, double lon) {
-        return weatherAPI.getCurrentWeather(lat, lon, WeatherAPI.UNITS_METRIC, WeatherAPI.API_KEY);
+    public Observable<WeatherInfo> getCurrentWeatherByName(String city) {
+        return weatherAPI.getCurrentWeatherByName(city,WeatherAPI.UNITS_METRIC,WeatherAPI.day_count,WeatherAPI.API_KEY);
+    }
+
+    public Observable<WeatherInfo> getCurrentWeatherByLocation(Double lat,Double lon) {
+        return weatherAPI.getCurrentWeatherByLocation(lat,lon,WeatherAPI.UNITS_METRIC,WeatherAPI.day_count,WeatherAPI.API_KEY);
     }
 
 

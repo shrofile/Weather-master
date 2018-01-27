@@ -3,91 +3,70 @@ package com.github.hazelhunt.weather.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class Weather {
 
-    @SerializedName("id")
+    @SerializedName("dt")
     @Expose
-    private Integer id;
+    private Long date_mili_sec;
+
     @SerializedName("main")
     @Expose
-    private String main;
-    @SerializedName("description")
+    private MainWeather mainWeather;
+
+    @SerializedName("weather")
     @Expose
-    private String description;
-    @SerializedName("icon")
+    private List<Weather_overview> weather_overview;
+
+    @SerializedName("clouds")
     @Expose
-    private String icon;
+    private Clouds clouds;
 
-    /**
-     * 
-     * @return
-     *     The id
-     */
-    public Integer getId() {
-        return id;
+
+    @SerializedName("wind")
+    private Wind wind;
+
+
+    public Long getDate_mili_sec() {
+        return date_mili_sec;
     }
 
-    /**
-     * 
-     * @param id
-     *     The id
-     */
-    public void setId(Integer id) {
-        this.id = id;
+    public List<Weather_overview> getWeather_overview() {
+        return weather_overview;
     }
 
-    /**
-     * 
-     * @return
-     *     The main
-     */
-    public String getMain() {
-        return main;
+    public void setWeather_overview(List<Weather_overview> weather_overview) {
+        this.weather_overview = weather_overview;
     }
 
-    /**
-     * 
-     * @param main
-     *     The main
-     */
-    public void setMain(String main) {
-        this.main = main;
+    public void setDate_mili_sec(Long date_mili_sec) {
+        this.date_mili_sec = date_mili_sec;
     }
 
-    /**
-     * 
-     * @return
-     *     The description
-     */
-    public String getDescription() {
-        return description;
+    public MainWeather getMainWeather() {
+        return mainWeather;
     }
 
-    /**
-     * 
-     * @param description
-     *     The description
-     */
-    public void setDescription(String description) {
-        this.description = description;
+    public void setMainWeather(MainWeather mainWeather) {
+        this.mainWeather = mainWeather;
     }
 
-    /**
-     * 
-     * @return
-     *     The icon
-     */
-    public String getIcon() {
-        return icon;
+
+
+    public Clouds getClouds() {
+        return clouds;
     }
 
-    /**
-     * 
-     * @param icon
-     *     The icon
-     */
-    public void setIcon(String icon) {
-        this.icon = icon;
+    public void setClouds(Clouds clouds) {
+        this.clouds = clouds;
     }
 
+    public Wind getWind() {
+        return wind;
+    }
+
+    public void setWind(Wind wind) {
+        this.wind = wind;
+    }
 }
